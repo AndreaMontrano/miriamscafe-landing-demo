@@ -17,16 +17,13 @@ function NotFoundComponent() {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
+        <h2 className="mt-4 text-xl font-semibold text-foreground">Pagina non trovata</h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+          La pagina che cerchi non esiste. Torna alla home per scoprire Miriam's Cafè.
         </p>
         <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Go home
+          <Link to="/" className="btn-primary">
+            Torna alla home
           </Link>
         </div>
       </div>
@@ -45,10 +42,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
+          Qualcosa è andato storto
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
+          Prova a ricaricare la pagina o torna alla home.
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
@@ -56,16 +53,11 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="btn-primary"
           >
-            Try again
+            Riprova
           </button>
-          <a
-            href="/"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
-          >
-            Go home
-          </a>
+          <a href="/" className="btn-ghost">Home</a>
         </div>
       </div>
     </div>
@@ -77,21 +69,57 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Miriam's Cafè Rivoli | Specialty Coffee, Brunch e Colazioni" },
+      {
+        name: "description",
+        content:
+          "Miriam's Cafè a Rivoli: specialty coffee, brunch, colazioni, matcha latte, aperitivi e coccole in tazza in Piazza Cavallero 11/a.",
+      },
+      { name: "author", content: "Miriam's Cafè" },
+      { property: "og:title", content: "Miriam's Cafè Rivoli | Specialty Coffee & Brunch" },
+      {
+        property: "og:description",
+        content:
+          "Specialty coffee, brunch colorati, matcha latte e aperitivi nel cuore di Rivoli. Piazza Cavallero 11/a.",
+      },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "Miriam's Cafè" },
+      { property: "og:url", content: "/" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "theme-color", content: "#f6ecd9" },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap",
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "CafeOrCoffeeShop",
+          name: "Miriam's Cafè",
+          description:
+            "Specialty Coffee Lab & Brunch a Rivoli: caffè speciali, brunch, colazioni, matcha latte e aperitivi.",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Piazza Cavallero 11/a",
+            addressLocality: "Rivoli",
+            addressRegion: "TO",
+            postalCode: "10098",
+            addressCountry: "IT",
+          },
+          telephone: "+39 392 740 7021",
+          servesCuisine: ["Specialty Coffee", "Brunch", "Colazioni", "Aperitivo"],
+          priceRange: "€€",
+        }),
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -102,7 +130,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="it">
       <head>
         <HeadContent />
       </head>
@@ -119,7 +147,6 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
     </QueryClientProvider>
   );
