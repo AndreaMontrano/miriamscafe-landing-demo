@@ -230,64 +230,95 @@ function ConceptSection() {
 
 /* ---------------- Menu grid ---------------- */
 function MenuSection() {
-  const items = [
-    { name: "Specialty coffee", desc: "Chicchi selezionati, estrazione curata. Il caffè come dovrebbe essere.", tag: "signature" },
-    { name: "Cappuccino & caffetteria", desc: "Crema setosa e latte art. La classica coccola del mattino.", tag: "classic" },
-    { name: "Matcha latte", desc: "Matcha cerimoniale, dolce ed erbaceo. Vibes green ogni giorno.", tag: "green" },
-    { name: "Strawberry Matcha Latte", desc: "Dolce, colorato, fresco: una delle firme più riconoscibili del Miriam's.", tag: "hit" },
-    { name: "Ice latte & cold brew", desc: "Fresco, intenso, dissetante. Il caffè che ti sveglia anche d'estate.", tag: "cold" },
-    { name: "Croissant e brioches", desc: "Sfoglia dorata e ripieni golosi. La colazione all'italiana ben fatta.", tag: "bakery" },
-    { name: "Brunch dolce e salato", desc: "Pancake, uova, avocado toast e proposte da fotografare.", tag: "brunch" },
-    { name: "Panini e omelette", desc: "Ingredienti di qualità per una pausa pranzo che sa di casa.", tag: "food" },
-    { name: "Aperitivi e cocktail", desc: "Drink creativi, spritz e bollicine per chiudere bene la giornata.", tag: "drink" },
-    { name: "Vegetariano & vegan-friendly", desc: "Opzioni pensate per tutti, senza rinunciare al gusto.", tag: "veg" },
-  ];
-
-  const tagColor: Record<string, string> = {
-    signature: "bg-coffee text-cream",
-    classic: "bg-caramel/25 text-coffee",
-    green: "bg-matcha/25 text-coffee",
-    hit: "bg-strawberry text-milk",
-    cold: "bg-milk text-coffee border border-coffee/15",
-    bakery: "bg-gold/30 text-coffee",
-    brunch: "bg-strawberry-soft text-coffee",
-    food: "bg-beige text-coffee",
-    drink: "bg-coffee/10 text-coffee",
-    veg: "bg-matcha-soft text-coffee",
-  };
+  const [active, setActive] = useState(0);
+  const category = menuData[active];
 
   return (
     <section id="menu" className="py-20 sm:py-28 bg-milk/70">
       <div className="container-page">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
           <div>
-            <span className="eyebrow">Cosa trovi</span>
+            <span className="eyebrow">Il menù</span>
             <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl text-coffee">
               Scegli la tua <span className="italic text-strawberry">coccola</span>.
             </h2>
           </div>
           <p className="text-coffee-soft max-w-md">
-            Un menù pensato per ogni momento della giornata: dalla colazione al brunch, dal caffè lento all'aperitivo con amici.
+            Tocca una categoria per scoprire tutti gli item disponibili con descrizione e prezzo.
           </p>
         </div>
 
-        <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {items.map((it) => (
-            <article key={it.name} className="soft-card group hover:-translate-y-1 transition-transform">
+        {/* Category tabs */}
+        <div className="mt-10 flex gap-2 overflow-x-auto pb-2 -mx-5 px-5 sm:mx-0 sm:px-0 sm:flex-wrap scrollbar-none">
+          {menuData.map((c, i) => {
+            const isActive = i === active;
+            return (
+              <button
+                key={c.name}
+                onClick={() => setActive(i)}
+                className={`shrink-0 rounded-full px-4 py-2.5 text-sm font-semibold transition-all border ${
+                  isActive
+                    ? "bg-coffee text-cream border-coffee shadow-[0_10px_24px_-14px_rgba(74,45,20,0.6)]"
+                    : "bg-milk text-coffee border-coffee/15 hover:border-coffee/40 hover:-translate-y-0.5"
+                }`}
+              >
+                {c.name}
+                <span
+                  className={`ml-2 inline-flex items-center justify-center rounded-full text-[10px] font-bold px-1.5 min-w-5 h-5 ${
+                    isActive ? "bg-cream/20 text-cream" : "bg-coffee/8 text-coffee-soft"
+                  }`}
+                >
+                  {c.items.length}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Items list */}
+        <div key={category.name} className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 fade-up">
+          {category.items.map((it) => (
+            <article
+              key={it.name}
+              className="soft-card group hover:-translate-y-1 transition-transform flex flex-col"
+            >
               <div className="flex items-start justify-between gap-3">
-                <h3 className="font-display text-xl font-semibold text-coffee leading-snug">{it.name}</h3>
-                <span className={`shrink-0 text-[10px] uppercase tracking-wider rounded-full px-2.5 py-1 font-semibold ${tagColor[it.tag]}`}>
-                  {it.tag}
+                <h3 className="font-display text-lg font-semibold text-coffee leading-snug">
+                  {it.name}
+                </h3>
+                <span className="shrink-0 rounded-full bg-strawberry text-milk px-3 py-1 text-sm font-bold whitespace-nowrap">
+                  € {it.price}
                 </span>
               </div>
-              <p className="mt-3 text-sm text-coffee-soft leading-relaxed">{it.desc}</p>
+              {it.desc && (
+                <p className="mt-3 text-sm text-coffee-soft leading-relaxed whitespace-pre-line">
+                  {it.desc}
+                </p>
+              )}
+              {it.tags.length > 0 && (
+                <div className="mt-4 flex flex-wrap gap-1.5">
+                  {it.tags.map((t) => (
+                    <span
+                      key={t}
+                      className="text-[10px] uppercase tracking-wider rounded-full px-2 py-1 font-semibold bg-matcha-soft text-coffee"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              )}
             </article>
           ))}
         </div>
+
+        <p className="mt-8 text-xs text-coffee-soft/80">
+          Prezzi indicativi. Menù completo, disponibilità e allergeni aggiornati in locale.
+        </p>
       </div>
     </section>
   );
 }
+
 
 /* ---------------- Brunch SEO ---------------- */
 function BrunchSection() {
