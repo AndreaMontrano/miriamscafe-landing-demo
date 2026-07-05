@@ -606,10 +606,52 @@ function StickyWhatsapp() {
 
 /* ---------------- Opening Hours ---------------- */
 function HoursSection() {
-  const schedule = [
-    { day: "Lunedì — Venerdì", hours: "06:30 — 18:30", note: "Colazione, pranzo veloce e pausa caffè", closed: false },
-    { day: "Sabato", hours: "07:00 — 14:00", note: "Colazione e brunch del weekend", closed: false },
-    { day: "Domenica", hours: "Chiuso", note: "Ci riposiamo per tornare al top lunedì", closed: true },
+  const services = [
+    {
+      label: "Orari di apertura",
+      icon: Clock,
+      rows: [
+        { day: "Domenica", hours: "Chiuso", closed: true },
+        { day: "Lunedì — Venerdì", hours: "06:30 — 18:30", closed: false },
+        { day: "Sabato", hours: "07:00 — 14:00", closed: false },
+      ],
+    },
+    {
+      label: "Happy hour",
+      icon: Wine,
+      rows: [
+        { day: "Domenica", hours: "Chiuso", closed: true },
+        { day: "Lunedì — Venerdì", hours: "17:00 — 18:30", closed: false },
+        { day: "Sabato", hours: "11:30 — 13:30", closed: false },
+      ],
+    },
+    {
+      label: "Da asporto",
+      icon: Coffee,
+      rows: [
+        { day: "Domenica", hours: "Chiuso", closed: true },
+        { day: "Lunedì — Venerdì", hours: "06:30 — 18:30", closed: false },
+        { day: "Sabato", hours: "07:00 — 14:00", closed: false },
+      ],
+    },
+    {
+      label: "Colazione",
+      icon: Croissant,
+      rows: [
+        { day: "Domenica", hours: "Chiuso", closed: true },
+        { day: "Lunedì — Venerdì", hours: "06:30 — 11:30", closed: false },
+        { day: "Sabato", hours: "07:00 — 11:00", closed: false },
+      ],
+    },
+    {
+      label: "Brunch",
+      icon: Leaf,
+      rows: [
+        { day: "Domenica", hours: "Chiuso", closed: true },
+        { day: "Lunedì — Venerdì", hours: "10:00 — 14:00", closed: false },
+        { day: "Sabato", hours: "10:00 — 14:00", closed: false },
+      ],
+    },
   ];
 
   return (
@@ -618,37 +660,53 @@ function HoursSection() {
         <div className="max-w-2xl">
           <span className="eyebrow"><Clock className="h-3.5 w-3.5" /> Orari</span>
           <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl text-coffee leading-tight">
-            Ti aspettiamo dal mattino presto,{" "}
-            <span className="italic text-strawberry">dal lunedì al sabato.</span>
+            Quando venirci a trovare{" "}
+            <span className="italic text-strawberry">a Rivoli.</span>
           </h2>
           <p className="mt-5 text-coffee-soft text-lg leading-relaxed">
-            In Piazza Cavallero apriamo alle 06:30 con la prima colazione: caffè specialty, cornetti caldi, matcha e brunch fino a metà pomeriggio.
+            Siamo aperti dal lunedì al sabato con fasce orarie dedicate a colazione, brunch, asporto e happy hour. Domenica chiuso per riposare.
           </p>
         </div>
 
-        <div className="mt-12 grid md:grid-cols-3 gap-5">
-          {schedule.map((s) => (
-            <div
-              key={s.day}
-              className={`soft-card flex flex-col justify-between gap-4 hover:-translate-y-1 transition-transform ${
-                s.closed ? "opacity-80" : ""
-              }`}
-            >
-              <div>
-                <div className="text-xs uppercase tracking-wider text-coffee-soft">{s.day}</div>
-                <div className={`mt-2 font-display text-3xl font-semibold ${s.closed ? "text-strawberry" : "text-coffee"}`}>
-                  {s.hours}
+        <div className="mt-12 overflow-hidden rounded-[2rem] border border-coffee/10 bg-milk shadow-[0_30px_60px_-30px_rgba(74,45,20,0.15)]">
+          <div className="hidden md:grid grid-cols-[1.5fr_1fr_1fr_1fr] bg-coffee text-cream px-6 py-4 text-sm font-semibold uppercase tracking-wider">
+            <div>Servizio</div>
+            <div className="text-center">Domenica</div>
+            <div className="text-center">Lunedì — Venerdì</div>
+            <div className="text-center">Sabato</div>
+          </div>
+          {services.map((service, i) => {
+            const Icon = service.icon;
+            return (
+              <div
+                key={service.label}
+                className={`grid md:grid-cols-[1.5fr_1fr_1fr_1fr] px-6 py-5 md:items-center gap-3 md:gap-0 ${
+                  i !== services.length - 1 ? "border-b border-coffee/10" : ""
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-strawberry-soft text-strawberry">
+                    <Icon className="h-4.5 w-4.5" />
+                  </span>
+                  <span className="font-display text-lg font-semibold text-coffee">{service.label}</span>
                 </div>
+                {service.rows.map((r) => (
+                  <div key={r.day} className="md:text-center flex md:block items-center justify-between">
+                    <span className="md:hidden text-xs uppercase tracking-wider text-coffee-soft">{r.day}</span>
+                    <span className={`font-semibold ${r.closed ? "text-strawberry" : "text-coffee"}`}>
+                      {r.hours}
+                    </span>
+                  </div>
+                ))}
               </div>
-              <p className="text-sm text-coffee-soft">{s.note}</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         <div className="mt-8 rounded-2xl bg-coffee text-cream p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
           <div className="flex items-center gap-3">
             <span className="grid h-10 w-10 place-items-center rounded-2xl bg-cream/15 shrink-0">
-              <Clock className="h-5 w-5" />
+              <MessageCircle className="h-5 w-5" />
             </span>
             <div>
               <div className="font-display text-lg font-semibold">Prenota il tuo tavolo brunch</div>
@@ -672,6 +730,7 @@ function HoursSection() {
     </section>
   );
 }
+
 
 
 /* ---------------- FAQ ---------------- */
