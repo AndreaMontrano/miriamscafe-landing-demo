@@ -13,6 +13,8 @@ import {
   ArrowRight,
   Navigation,
   Clock,
+  ChevronDown,
+  HelpCircle,
 } from "lucide-react";
 import { menu as menuData } from "@/data/menu";
 
