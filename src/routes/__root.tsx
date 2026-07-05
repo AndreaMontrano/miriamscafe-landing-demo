@@ -76,7 +76,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Miriam's Cafè a Rivoli: specialty coffee, brunch, colazioni, matcha latte, aperitivi e coccole in tazza in Piazza Cavallero 11/a.",
       },
       { name: "author", content: "Miriam's Cafè" },
-      { property: "og:title", content: "Miriam's Cafè Rivoli | Specialty Coffee & Brunch" },
+      { property: "og:title", content: "Miriam's Cafè Rivoli | Specialty Coffee, Brunch e Colazioni" },
       {
         property: "og:description",
         content:
@@ -87,6 +87,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:url", content: "/" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "theme-color", content: "#f6ecd9" },
+      { name: "twitter:title", content: "Miriam's Cafè Rivoli | Specialty Coffee, Brunch e Colazioni" },
+      { name: "description", content: "Miriam's Cafè a Rivoli: specialty coffee, brunch, colazioni, matcha latte, aperitivi e coccole in tazza in Piazza Cavallero 11/a." },
+      { property: "og:description", content: "Miriam's Cafè a Rivoli: specialty coffee, brunch, colazioni, matcha latte, aperitivi e coccole in tazza in Piazza Cavallero 11/a." },
+      { name: "twitter:description", content: "Miriam's Cafè a Rivoli: specialty coffee, brunch, colazioni, matcha latte, aperitivi e coccole in tazza in Piazza Cavallero 11/a." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/37ee281c-e2aa-483a-8aa7-d467d5dbcea2" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/37ee281c-e2aa-483a-8aa7-d467d5dbcea2" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
