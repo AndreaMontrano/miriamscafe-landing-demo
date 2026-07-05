@@ -100,6 +100,8 @@ function Hero() {
           <a href="#menu" className="hover:text-coffee transition-colors">Menù</a>
           <a href="#brunch" className="hover:text-coffee transition-colors">Brunch</a>
           <a href="#gallery" className="hover:text-coffee transition-colors">Gallery</a>
+          <a href="#orari" className="hover:text-coffee transition-colors">Orari</a>
+          <a href="#faq" className="hover:text-coffee transition-colors">FAQ</a>
           <a href="#dove" className="hover:text-coffee transition-colors">Dove siamo</a>
         </div>
         <a href={WHATSAPP} target="_blank" rel="noreferrer" className="hidden sm:inline-flex btn-accent !py-2.5 !px-4 !text-sm">
