@@ -13,6 +13,8 @@ import {
   ArrowRight,
   Navigation,
   Clock,
+  ChevronDown,
+  HelpCircle,
 } from "lucide-react";
 import { menu as menuData } from "@/data/menu";
 
@@ -44,7 +46,9 @@ function Landing() {
       <BrunchSection />
       <ReviewsSection />
       <GallerySection />
+      <HoursSection />
       <LocationSection />
+      <FAQSection />
       <FinalCTA />
       <Footer />
       <StickyWhatsapp />
@@ -98,6 +102,8 @@ function Hero() {
           <a href="#menu" className="hover:text-coffee transition-colors">Menù</a>
           <a href="#brunch" className="hover:text-coffee transition-colors">Brunch</a>
           <a href="#gallery" className="hover:text-coffee transition-colors">Gallery</a>
+          <a href="#orari" className="hover:text-coffee transition-colors">Orari</a>
+          <a href="#faq" className="hover:text-coffee transition-colors">FAQ</a>
           <a href="#dove" className="hover:text-coffee transition-colors">Dove siamo</a>
         </div>
         <a href={WHATSAPP} target="_blank" rel="noreferrer" className="hidden sm:inline-flex btn-accent !py-2.5 !px-4 !text-sm">
@@ -595,5 +601,159 @@ function StickyWhatsapp() {
     >
       <MessageCircle className="h-5 w-5" /> Scrivici su WhatsApp
     </a>
+  );
+}
+
+/* ---------------- Opening Hours ---------------- */
+function HoursSection() {
+  const schedule = [
+    { day: "Lunedì — Venerdì", hours: "07:30 — 19:00", note: "Colazione, brunch e pausa caffè" },
+    { day: "Sabato", hours: "08:00 — 19:30", note: "Brunch fino a sera" },
+    { day: "Domenica", hours: "08:30 — 14:30", note: "Colazione e brunch" },
+  ];
+
+  return (
+    <section id="orari" className="py-20 sm:py-28 bg-milk/50">
+      <div className="container-page">
+        <div className="max-w-2xl">
+          <span className="eyebrow"><Clock className="h-3.5 w-3.5" /> Orari</span>
+          <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl text-coffee leading-tight">
+            Siamo aperti tutti i giorni,{" "}
+            <span className="italic text-strawberry">anche per il brunch.</span>
+          </h2>
+          <p className="mt-5 text-coffee-soft text-lg leading-relaxed">
+            Vieni a trovarci in Piazza Cavallero: dalle prime colazioni del mattino agli aperitivi del pomeriggio, ogni momento è buono per una coccola in tazza.
+          </p>
+        </div>
+
+        <div className="mt-12 grid md:grid-cols-3 gap-5">
+          {schedule.map((s) => (
+            <div
+              key={s.day}
+              className="soft-card flex flex-col justify-between gap-4 hover:-translate-y-1 transition-transform"
+            >
+              <div>
+                <div className="text-xs uppercase tracking-wider text-coffee-soft">{s.day}</div>
+                <div className="mt-2 font-display text-3xl font-semibold text-coffee">{s.hours}</div>
+              </div>
+              <p className="text-sm text-coffee-soft">{s.note}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-8 rounded-2xl bg-coffee text-cream p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8">
+          <div className="flex items-center gap-3">
+            <span className="grid h-10 w-10 place-items-center rounded-2xl bg-cream/15 shrink-0">
+              <Clock className="h-5 w-5" />
+            </span>
+            <div>
+              <div className="font-display text-lg font-semibold">Aperitivo & drink creativi</div>
+              <div className="text-sm text-cream/80">Tutti i giorni dalle 17:00 in poi</div>
+            </div>
+          </div>
+          <a
+            href={WHATSAPP}
+            target="_blank"
+            rel="noreferrer"
+            className="sm:ml-auto inline-flex items-center justify-center gap-2 rounded-full bg-strawberry text-milk px-5 py-2.5 font-semibold hover:-translate-y-0.5 transition-transform"
+          >
+            <MessageCircle className="h-4 w-4" /> Prenota su WhatsApp
+          </a>
+        </div>
+
+        <p className="mt-6 text-xs text-coffee-soft/80">
+          Gli orari possono variare in occasione di festività o eventi speciali. Seguici su Instagram per aggiornamenti in tempo reale.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+/* ---------------- FAQ ---------------- */
+function FAQSection() {
+  const [open, setOpen] = useState<number | null>(0);
+
+  const faqs = [
+    {
+      q: "Serve prenotare per il brunch?",
+      a: "Non è obbligatoria, ma ti consigliamo di prenotare via WhatsApp soprattutto nei weekend e per gruppi, così ti riserviamo il tavolo giusto.",
+    },
+    {
+      q: "Avete opzioni vegan e vegetariane?",
+      a: "Sì, il menù include piatti vegetariani, vegan e bevande vegetali. Trovi le etichette direttamente nel menù digitale.",
+    },
+    {
+      q: "Accettate i cani?",
+      a: "I piccoli amici a quattro zampe sono i benvenuti! Siamo pet friendly, basta che siano tranquilli e al guinzaglio.",
+    },
+    {
+      q: "Dove posso parcheggiare?",
+      a: "Siamo in Piazza Cavallero 11/a a Rivoli: nelle vicinanze trovi parcheggio in strada e piccole piazze. In bici o a piedi è ancora più facile.",
+    },
+    {
+      q: "Fate colazioni d'asporto?",
+      a: "Certo! Puoi ordinare caffè, cappuccino, cornetti e smoothie da asporto. Scrivici su WhatsApp per prenotare e trovare il tuo ordine pronto all'arrivo.",
+    },
+    {
+      q: "C'è il Wi-Fi per lavorare?",
+      a: "Sì, il locale ha una connessione Wi-Fi gratuita per i clienti. È l'ambiente ideale per una pausa lavoro con un buon specialty coffee.",
+    },
+  ];
+
+  return (
+    <section id="faq" className="py-20 sm:py-28">
+      <div className="container-page grid lg:grid-cols-[1fr_1.3fr] gap-12 items-start">
+        <div className="lg:sticky lg:top-24">
+          <span className="eyebrow"><HelpCircle className="h-3.5 w-3.5" /> Domande frequenti</span>
+          <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl text-coffee leading-tight">
+            Tutto quello che vuoi sapere{" "}
+            <span className="italic text-strawberry">prima di passare.</span>
+          </h2>
+          <p className="mt-5 text-coffee-soft text-lg leading-relaxed">
+            Non trovi la risposta che cerchi? Scrivici su WhatsApp: ti rispondiamo velocemente.
+          </p>
+          <a
+            href={WHATSAPP}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-6 btn-accent"
+          >
+            <MessageCircle className="h-4 w-4" /> Scrivici su WhatsApp
+          </a>
+        </div>
+
+        <div className="space-y-4">
+          {faqs.map((f, i) => {
+            const isOpen = open === i;
+            return (
+              <div
+                key={i}
+                className={`soft-card !p-0 transition-all ${isOpen ? "ring-2 ring-strawberry/30" : ""}`}
+              >
+                <button
+                  onClick={() => setOpen(isOpen ? null : i)}
+                  className="w-full flex items-center justify-between gap-4 p-5 sm:p-6 text-left"
+                  aria-expanded={isOpen}
+                >
+                  <span className="font-display text-lg font-semibold text-coffee leading-snug">
+                    {f.q}
+                  </span>
+                  <span className={`shrink-0 grid h-8 w-8 place-items-center rounded-full bg-matcha-soft text-matcha transition-transform ${isOpen ? "rotate-180" : ""}`}>
+                    <ChevronDown className="h-5 w-5" />
+                  </span>
+                </button>
+                <div
+                  className={`overflow-hidden transition-all ${isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}
+                >
+                  <p className="px-5 sm:px-6 pb-5 sm:pb-6 text-coffee-soft leading-relaxed">
+                    {f.a}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
   );
 }

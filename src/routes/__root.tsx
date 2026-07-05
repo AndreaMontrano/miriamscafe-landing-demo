@@ -124,6 +124,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           telephone: "+39 3927407021",
           servesCuisine: ["Specialty Coffee", "Brunch", "Colazioni", "Aperitivo"],
           priceRange: "€€",
+          openingHoursSpecification: [
+            { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "07:30", closes: "19:00" },
+            { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "08:00", closes: "19:30" },
+            { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "08:30", closes: "14:30" },
+          ],
         }),
       },
     ],
