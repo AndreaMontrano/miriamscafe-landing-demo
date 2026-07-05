@@ -46,7 +46,9 @@ function Landing() {
       <BrunchSection />
       <ReviewsSection />
       <GallerySection />
+      <HoursSection />
       <LocationSection />
+      <FAQSection />
       <FinalCTA />
       <Footer />
       <StickyWhatsapp />
