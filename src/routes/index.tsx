@@ -31,7 +31,7 @@ export const Route = createFileRoute("/")({
 
 const WHATSAPP = "https://wa.me/393927407021?text=Ciao%20Miriam's%20Caf%C3%A8!%20Vorrei%20info%20o%20prenotare%20un%20tavolo.";
 const MAPS = "https://www.google.com/maps/search/?api=1&query=Miriam%27s+Caf%C3%A8+Piazza+Cavallero+11%2Fa+Rivoli";
-const INSTAGRAM = "https://www.instagram.com/";
+const INSTAGRAM = "https://www.instagram.com/miriamscaferivoli/";
 const PHONE = "tel:+393927407021";
 
 function Landing() {
@@ -62,7 +62,7 @@ function TopBar() {
             <MapPin className="h-3.5 w-3.5" /> Piazza Cavallero 11/a, Rivoli (TO)
           </span>
           <a href={PHONE} className="flex items-center gap-1.5 hover:text-strawberry-soft transition-colors">
-            <Phone className="h-3.5 w-3.5" /> +39 392 740 7021
+            <Phone className="h-3.5 w-3.5" /> +39 3927407021
           </a>
         </div>
         <div className="flex items-center gap-4">
@@ -487,7 +487,7 @@ function LocationSection() {
               </span>
               <div>
                 <div className="text-xs uppercase tracking-wider text-coffee-soft">Telefono</div>
-                <a href={PHONE} className="font-semibold text-coffee hover:text-strawberry transition-colors">+39 392 740 7021</a>
+                <a href={PHONE} className="font-semibold text-coffee hover:text-strawberry transition-colors">+39 3927407021</a>
               </div>
             </div>
           </div>
@@ -570,8 +570,8 @@ function Footer() {
         <div className="text-sm space-y-2">
           <div className="text-cream font-semibold uppercase tracking-wider text-xs">Contatti</div>
           <div className="flex items-center gap-2"><MapPin className="h-4 w-4" /> Piazza Cavallero 11/a, Rivoli (TO)</div>
-          <a href={PHONE} className="flex items-center gap-2 hover:text-strawberry-soft transition-colors"><Phone className="h-4 w-4" /> +39 392 740 7021</a>
-          <a href={INSTAGRAM} target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-strawberry-soft transition-colors"><Instagram className="h-4 w-4" /> @miriamscafe</a>
+          <a href={PHONE} className="flex items-center gap-2 hover:text-strawberry-soft transition-colors"><Phone className="h-4 w-4" /> +39 3927407021</a>
+          <a href={INSTAGRAM} target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-strawberry-soft transition-colors"><Instagram className="h-4 w-4" /> @miriamscaferivoli</a>
         </div>
         <div className="text-sm">
           <div className="text-cream font-semibold uppercase tracking-wider text-xs">Vieni a trovarci</div>
