@@ -607,9 +607,9 @@ function StickyWhatsapp() {
 /* ---------------- Opening Hours ---------------- */
 function HoursSection() {
   const schedule = [
-    { day: "Lunedì — Venerdì", hours: "07:30 — 19:00", note: "Colazione, brunch e pausa caffè" },
-    { day: "Sabato", hours: "08:00 — 19:30", note: "Brunch fino a sera" },
-    { day: "Domenica", hours: "08:30 — 14:30", note: "Colazione e brunch" },
+    { day: "Lunedì — Venerdì", hours: "06:30 — 18:30", note: "Colazione, pranzo veloce e pausa caffè", closed: false },
+    { day: "Sabato", hours: "07:00 — 14:00", note: "Colazione e brunch del weekend", closed: false },
+    { day: "Domenica", hours: "Chiuso", note: "Ci riposiamo per tornare al top lunedì", closed: true },
   ];
 
   return (
@@ -618,11 +618,11 @@ function HoursSection() {
         <div className="max-w-2xl">
           <span className="eyebrow"><Clock className="h-3.5 w-3.5" /> Orari</span>
           <h2 className="mt-4 font-display text-3xl sm:text-4xl lg:text-5xl text-coffee leading-tight">
-            Siamo aperti tutti i giorni,{" "}
-            <span className="italic text-strawberry">anche per il brunch.</span>
+            Ti aspettiamo dal mattino presto,{" "}
+            <span className="italic text-strawberry">dal lunedì al sabato.</span>
           </h2>
           <p className="mt-5 text-coffee-soft text-lg leading-relaxed">
-            Vieni a trovarci in Piazza Cavallero: dalle prime colazioni del mattino agli aperitivi del pomeriggio, ogni momento è buono per una coccola in tazza.
+            In Piazza Cavallero apriamo alle 06:30 con la prima colazione: caffè specialty, cornetti caldi, matcha e brunch fino a metà pomeriggio.
           </p>
         </div>
 
@@ -630,11 +630,15 @@ function HoursSection() {
           {schedule.map((s) => (
             <div
               key={s.day}
-              className="soft-card flex flex-col justify-between gap-4 hover:-translate-y-1 transition-transform"
+              className={`soft-card flex flex-col justify-between gap-4 hover:-translate-y-1 transition-transform ${
+                s.closed ? "opacity-80" : ""
+              }`}
             >
               <div>
                 <div className="text-xs uppercase tracking-wider text-coffee-soft">{s.day}</div>
-                <div className="mt-2 font-display text-3xl font-semibold text-coffee">{s.hours}</div>
+                <div className={`mt-2 font-display text-3xl font-semibold ${s.closed ? "text-strawberry" : "text-coffee"}`}>
+                  {s.hours}
+                </div>
               </div>
               <p className="text-sm text-coffee-soft">{s.note}</p>
             </div>
@@ -647,8 +651,8 @@ function HoursSection() {
               <Clock className="h-5 w-5" />
             </span>
             <div>
-              <div className="font-display text-lg font-semibold">Aperitivo & drink creativi</div>
-              <div className="text-sm text-cream/80">Tutti i giorni dalle 17:00 in poi</div>
+              <div className="font-display text-lg font-semibold">Prenota il tuo tavolo brunch</div>
+              <div className="text-sm text-cream/80">Sabato mattina è il momento più richiesto, meglio scriverci prima</div>
             </div>
           </div>
           <a
@@ -662,12 +666,13 @@ function HoursSection() {
         </div>
 
         <p className="mt-6 text-xs text-coffee-soft/80">
-          Gli orari possono variare in occasione di festività o eventi speciali. Seguici su Instagram per aggiornamenti in tempo reale.
+          Gli orari possono variare in occasione di festività o eventi speciali. Ti consigliamo di verificare su Google o sul nostro profilo Instagram prima di venire.
         </p>
       </div>
     </section>
   );
 }
+
 
 /* ---------------- FAQ ---------------- */
 function FAQSection() {

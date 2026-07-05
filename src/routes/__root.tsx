@@ -125,9 +125,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           servesCuisine: ["Specialty Coffee", "Brunch", "Colazioni", "Aperitivo"],
           priceRange: "€€",
           openingHoursSpecification: [
-            { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "07:30", closes: "19:00" },
-            { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "08:00", closes: "19:30" },
-            { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "08:30", closes: "14:30" },
+            { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "06:30", closes: "18:30" },
+            { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "07:00", closes: "14:00" },
           ],
         }),
       },
