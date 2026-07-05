@@ -115,7 +115,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
             postalCode: "10098",
             addressCountry: "IT",
           },
-          telephone: "+39 392 740 7021",
+          telephone: "+39 3927407021",
           servesCuisine: ["Specialty Coffee", "Brunch", "Colazioni", "Aperitivo"],
           priceRange: "€€",
         }),
