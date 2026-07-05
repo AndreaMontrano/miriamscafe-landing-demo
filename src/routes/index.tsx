@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import {
   Coffee,
   Instagram,
@@ -13,6 +14,8 @@ import {
   Navigation,
   Clock,
 } from "lucide-react";
+import { menu as menuData } from "@/data/menu";
+
 
 import heroImg from "@/assets/hero-brunch.jpg";
 import matchaImg from "@/assets/gallery-strawberry-matcha.jpg";
